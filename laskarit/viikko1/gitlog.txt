@@ -1,0 +1,103 @@
+commit f04cc07b80cffc5bea45a25db2ef9935b3c57ba9
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:21:49 2023 +0200
+
+    uudelleenjärjestelyjä
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bdb0c358d6417fcdf5b21425114f2c02101bc1d2
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:19:05 2023 +0200
+
+    tiedostoja.
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit f7a23b172854d301b20e915d68e285e992949aff
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:15:59 2023 +0200
+
+    lisää muutoksia
+
+ eka.txt    | 11 ++---------
+ kolmas.txt |  1 +
+ 2 files changed, 3 insertions(+), 9 deletions(-)
+
+commit 7cc10ecd4a0e3b5ce1650a455758633fde1b3af8
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:14:07 2023 +0200
+
+    otettu käyttöön yhtenäinen nimeämiskäytäntö
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f3679b5fd91105552a12e7c529d6cf2cc985f583
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:12:36 2023 +0200
+
+    toinen poistettu
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3895084c838158c8837c0f9420b8f045f6e895c8
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:10:47 2023 +0200
+
+    tekstin määritelmä korjattu
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 330f117278b86a0115b84683d50b4a97e4e935dd
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:09:57 2023 +0200
+
+    tekstin määritelmä lisätty
+
+ tiedosto.txt | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+commit 2614b652e84ffd1d7d2fe412a99f784a10d96a81
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:06:09 2023 +0200
+
+    juttuja
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 29ef442d719468dab83de3e111d9f0b940b0d004
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:05:16 2023 +0200
+
+    kolmas tiedosto luotu :)
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e7bd7dc8a48fe914fb96c2d5c6bb3887bce91a32
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:02:56 2023 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit dbb9d6fa807abc05efb61de7b83dfebaa596b366
+Author: Pyry <pyry.sangi@helsinki.fi>
+Date:   Tue Mar 21 23:00:44 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
