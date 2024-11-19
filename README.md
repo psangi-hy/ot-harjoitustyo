@@ -4,4 +4,4 @@ Miinaharavapeli, jossa graafinen käyttöliittymä ja mahdollisuus tallentaa pel
 
 [vaatimusmäärittely](/dokumentaatio/vaatimusmaarittely.md)
 [tuntikirjanpito](/dokumentaatio/tuntikirjanpito.md)
-[laskarit](/laskarit)
+[muutosloki](/dokumentaatio/changelog.md)
