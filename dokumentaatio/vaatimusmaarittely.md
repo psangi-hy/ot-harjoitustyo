@@ -12,8 +12,11 @@ Käyttäjä voi
 
 - aloittaa pelin joko ennalta määritellyllä tai käyttäjän määrittelemällä
   vaikeustasolla (pelikentän koko ja miinojen lkm).
+  (tehty tekstikäyttöliittymän osalta)
 - nähdä pelin aikana kuluneen ajan.
+  (tehty tekstikäyttöliittymän osalta)
 - ratkaistuaan pelin tallentaa saavuttamansa ajan tuloslistalle.
+  (tehty tekstikäyttöliittymän osalta)
 - tarkastella aiempia tuloksia.
 
 Käyttöliittymä
