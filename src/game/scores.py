@@ -43,5 +43,7 @@ def save_score(db, score, name):
         res = cur.execute("INSERT INTO user(name) VALUES(?) RETURNING rowid;", (name,)).fetchone()
         user_id = res[0]
 
-    cur.execute("INSERT INTO score(value, time, user_id) VALUES(?, julianday(), ?);", (score, user_id))
+    cur.execute(
+            "INSERT INTO score(value, time, user_id) VALUES(?, julianday(), ?);",
+            (score, user_id))
     db.commit()
