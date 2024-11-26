@@ -1,4 +1,7 @@
+from time import time
+
 from game.game_state import GameState
+from game.scores import save_score
 
 def tile_str(state, x, y):
     if not state.is_open(x, y):
@@ -59,12 +62,20 @@ def run_text_ui():
     else:
         assert False
 
+    started = False
+
     while True:
         for y in range(state.height):
             print(" ".join(tile_str(state, x, y) for x in range(state.width)))
 
         if state.solved():
-            print("Voitit!")
+            solve_time = int(time() - start_time)
+            print("Voitit! Aikasi oli " + str(solve_time) + " sekuntia.")
+            name = input("Nimimerkki (jätä tyhjäksi ohittaaksesi): ")
+
+            if name:
+                save_score(solve_time, name)
+
             return
         elif state.lost():
             print("Hävisit!")
@@ -83,6 +94,8 @@ def run_text_ui():
 
             break
 
-        if state.open(*user_input):
-            print("Hävisit!")
-            return
+        state.open(*user_input)
+
+        if not started:
+            started = True
+            start_time = time()
