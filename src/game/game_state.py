@@ -1,5 +1,5 @@
-from bitarray import bitarray
 from random import random
+from bitarray import bitarray
 
 class GameState():
     def __init__(self, width, height, num_mines):
@@ -10,14 +10,7 @@ class GameState():
         num_tiles = width * height
 
         self.mines = bitarray(num_tiles)
-        mines_left = num_mines
-        tiles_left = num_tiles
-
-        for i in range(num_tiles):
-            lay_mine = random() < mines_left / tiles_left
-            self.mines[i] = lay_mine
-            mines_left -= lay_mine
-            tiles_left -= 1
+        self.mines_laid = False
 
         self.opened = bitarray(num_tiles)
         self.opened.setall(False)
@@ -59,19 +52,40 @@ class GameState():
         return sum(self.is_mine(u, v) for u, v in self.surrounding_tiles(x, y))
 
     def open(self, x, y):
+        if not self.mines_laid:
+            self.lay_mines(x, y)
+
         index = x + y * self.width
 
         if self.opened[index]:
-            return False
+            return
 
         self.opened[index] = True
 
-        if self.is_mine(x, y):
-            return True
-
-        if not self.num_surrounding_mines(x, y):
+        if not self.is_mine(x, y) and not self.num_surrounding_mines(x, y):
             for u, v in self.surrounding_tiles(x, y):
-                mine = self.open(u, v)
-                assert not mine
+                assert not self.is_mine(u, v)
+                self.open(u, v)
 
-        return False
+    def lay_mines(self, exclude_x, exclude_y):
+        num_tiles = self.width * self.height
+        mines_left = self.num_mines
+        tiles_left = num_tiles - 1 if self.is_valid_tile(exclude_x, exclude_y) else num_tiles
+        exclude = exclude_x + exclude_y * self.width
+
+        for i in range(num_tiles):
+            if i == exclude:
+                continue
+
+            lay_mine = random() < mines_left / tiles_left
+            self.mines[i] = lay_mine
+            mines_left -= lay_mine
+            tiles_left -= 1
+
+        self.mines_laid = True
+
+    def solved(self):
+        return (self.mines ^ self.opened).all()
+
+    def lost(self):
+        return (self.mines & self.opened).any()

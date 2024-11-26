@@ -1,7 +1,3 @@
-from ui.text_ui import TextUi
-from game.game_state import GameState
+from ui.text_ui import run_text_ui
 
-ui = TextUi()
-state = GameState(10, 10, 10)
-
-ui.run(state)
+run_text_ui()

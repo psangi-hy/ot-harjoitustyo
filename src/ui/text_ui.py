@@ -1,3 +1,5 @@
+from game.game_state import GameState
+
 def tile_str(state, x, y):
     if not state.is_open(x, y):
         return "."
@@ -23,26 +25,64 @@ def read_input():
 
         return (int(s[0]), int(s[1]))
 
-class TextUi:
-    def __init__(self):
-        pass
+def ask_difficulty():
+    while True:
+        i = input("Valitse vaikeustaso.\n1. Helppo\n2. Keskitaso\n3. Vaikea\n4. Mukautettu\n0. Poistu\n")
 
-    def run(self, state):
+        if i.isdigit() and int(i) <= 4:
+            return int(i)
+
+def ask_parameter(prompt):
+    while True:
+        i = input(prompt)
+
+        if i.isdigit() and int(i) >= 1:
+            return int(i)
+
+def run_text_ui():
+    option = ask_difficulty()
+
+    if not option:
+        return
+    elif option == 1:
+        state = GameState(10, 10, 10)
+    elif option == 2:
+        state = GameState(16, 16, 40)
+    elif option == 3:
+        state = GameState(30, 16, 99)
+    elif option == 4:
+        width = ask_parameter("Pelikentän leveys: ")
+        height = ask_parameter("Pelikentän korkeus: ")
+        num_mines = ask_parameter("Miinojen lukumäärä: ")
+
+        state = GameState(width, height, num_mines)
+    else:
+        assert False
+
+    while True:
+        for y in range(state.height):
+            print(" ".join(tile_str(state, x, y) for x in range(state.width)))
+
+        if state.solved():
+            print("Voitit!")
+            return
+        elif state.lost():
+            print("Hävisit!")
+            return
+
+        print("")
+
         while True:
-            for y in range(state.height):
-                print(" ".join(tile_str(state, x, y) for x in range(state.width)))
+            user_input = read_input()
 
-            print("")
+            if not user_input:
+                return
 
-            while True:
-                user_input = read_input()
+            if not state.is_valid_tile(*user_input):
+                continue
 
-                if not user_input:
-                    return
+            break
 
-                if not state.is_valid_tile(*user_input):
-                    continue
-
-                break
-
-            state.open(*user_input)
+        if state.open(*user_input):
+            print("Hävisit!")
+            return

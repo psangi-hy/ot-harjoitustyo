@@ -12,4 +12,5 @@ class TestGameState(TestCase):
         for conf in configurations:
             for _ in range(10):
                 state = GameState(conf[0], conf[1], conf[2])
+                state.lay_mines(-1, -1)
                 self.assertEqual(state.mines.count(), conf[2])
