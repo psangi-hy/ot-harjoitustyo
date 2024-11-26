@@ -10,7 +10,7 @@ Miinaharavapeli, jossa graafinen käyttöliittymä ja mahdollisuus tallentaa pel
 ## Ohje
 
 Projekti vaatii Pythonin version 3.9 tai tätä uudemman sekä Poetryn.
-Riippuvuuksien asennus onnistoo komennolla
+Riippuvuuksien asennus onnistuu komennolla
 
 	poetry install
 
