@@ -23,7 +23,7 @@ class GameState():
         self.opened.setall(False)
 
     def is_valid_tile(self, x, y):
-        return x >= 0 and x < self.width and y >= 0 and y < self.height
+        return 0 <= x < self.width and 0 <= y < self.height
 
     def is_mine(self, x, y):
         return self.mines[x + y * self.width]
@@ -37,15 +37,23 @@ class GameState():
         up = y > 0
         down = y < self.height - 1
 
-        if left: yield (x - 1, y)
-        if right: yield (x + 1, y)
-        if up: yield (x, y - 1)
-        if down: yield (x, y + 1)
+        if left:
+            yield (x - 1, y)
+        if right:
+            yield (x + 1, y)
+        if up:
+            yield (x, y - 1)
+        if down:
+            yield (x, y + 1)
 
-        if left and up: yield (x - 1, y - 1)
-        if left and down: yield (x - 1, y + 1)
-        if right and up: yield (x + 1, y - 1)
-        if right and down: yield (x + 1, y + 1)
+        if left and up:
+            yield (x - 1, y - 1)
+        if left and down:
+            yield (x - 1, y + 1)
+        if right and up:
+            yield (x + 1, y - 1)
+        if right and down:
+            yield (x + 1, y + 1)
 
     def num_surrounding_mines(self, x, y):
         return sum(self.is_mine(u, v) for u, v in self.surrounding_tiles(x, y))
