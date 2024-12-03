@@ -13,3 +13,9 @@ Viikko 4
 - Pelin voitettuaan pelaaja voi tallentaa ratkaisuaikansa tietokantaan
   (mutta ei vielä tarkastella aikaisempia tuloksia).
 - Kasvatettu game\_state-moduulin haaraumakattavuutta.
+
+Viikko 5
+========
+
+- Peliä voi pelata graafisella käyttöliittymällä samoin ominaisuuksin kuin tekstikäyttöliittymässä.
+- Pelituloksen kanssa tallennetaan pelin asetukset.
