@@ -7,6 +7,8 @@ Miinaharavapeli, jossa graafinen käyttöliittymä ja mahdollisuus tallentaa pel
 [muutosloki](/dokumentaatio/changelog.md)
 [arkkitehtuuri](/dokumentaatio/arkkitehtuuri.md)
 
+[release 1](https://github.com/psangi-hy/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Ohje
 
 Projekti vaatii Pythonin version 3.9 tai tätä uudemman sekä Poetryn.
