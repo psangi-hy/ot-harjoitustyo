@@ -26,6 +26,9 @@ def create_database():
             value INTEGER,
             time REAL,
             user_id INTEGER,
+            width INTEGER,
+            height INTEGER,
+            num_mines INTEGER,
             FOREIGN KEY(user_id) REFERENCES user(rowid)
         );
     """)
@@ -33,7 +36,7 @@ def create_database():
     return db
 
 @with_db
-def save_score(db, score, name):
+def save_score(db, score, name, width, height, num_mines):
     cur = db.cursor()
 
     res = cur.execute("SELECT rowid FROM user WHERE name=? LIMIT 1;", (name,)).fetchone()
@@ -43,7 +46,8 @@ def save_score(db, score, name):
         res = cur.execute("INSERT INTO user(name) VALUES(?) RETURNING rowid;", (name,)).fetchone()
         user_id = res[0]
 
-    cur.execute(
-            "INSERT INTO score(value, time, user_id) VALUES(?, julianday(), ?);",
-            (score, user_id))
+    cur.execute("""
+        INSERT INTO score(value, time, user_id, width, height, num_mines)
+        VALUES(?, julianday(), ?, ?, ?, ?);
+    """, (score, user_id, width, height, num_mines))
     db.commit()

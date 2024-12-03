@@ -74,7 +74,7 @@ def run_text_ui():
             name = input("Nimimerkki (jätä tyhjäksi ohittaaksesi): ")
 
             if name:
-                save_score(solve_time, name)
+                save_score(solve_time, name, state.width, state.height, state.num_mines)
 
             return
         elif state.lost():
