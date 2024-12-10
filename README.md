@@ -2,6 +2,7 @@
 
 Miinaharavapeli, jossa graafinen käyttöliittymä ja mahdollisuus tallentaa pelitulokset.
 
+[käyttöohje](/dokumentaatio/kayttoohje.md)
 [vaatimusmäärittely](/dokumentaatio/vaatimusmaarittely.md)
 [tuntikirjanpito](/dokumentaatio/tuntikirjanpito.md)
 [muutosloki](/dokumentaatio/changelog.md)
