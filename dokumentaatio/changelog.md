@@ -19,3 +19,10 @@ Viikko 5
 
 - Peliä voi pelata graafisella käyttöliittymällä samoin ominaisuuksin kuin tekstikäyttöliittymässä.
 - Pelituloksen kanssa tallennetaan pelin asetukset.
+
+Viikko 6
+========
+
+- Graafisessa käyttöliittymässä voi merkitä avaamattoman ruudun lipulla oikealla hiiripainikkeella.
+- Graafisessa käyttöliittymässä voi avata jo avattua ruutua ympäröivät ruudut hiiren
+  keskipainikkeella, mikäli oikea määrä niitä on liputettu.

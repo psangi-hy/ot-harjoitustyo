@@ -28,5 +28,5 @@ Peliä pelataan lopullisessa versiossa hiirellä. Käyttäjä voi pelin aikana
   ole miinaa, avautuvat myös ympäröivät ruudut. Tämä jatkuu rekursiivisesti.
   Avatussa ruudussa lukee sitä ympäröivien miinojen lukumäärä.
   (tehty)
-- merkitä (liputtaa) ruudun, jonka hän uskoo olevan miinoitettu.
-- avata kaikki tiettyä avattua ruutua ympäröivät, merkitsemättömät ruudut.
+- merkitä (liputtaa) ruudun, jonka hän uskoo olevan miinoitettu. (tehty)
+- avata kaikki tiettyä avattua ruutua ympäröivät, merkitsemättömät ruudut. (tehty)
