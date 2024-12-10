@@ -10,9 +10,10 @@ CR_EXIT = 0
 CR_NEWGAME = 1
 
 class UiState:
-    def __init__(self, root, grid, game_state):
+    def __init__(self, root, grid, flags, game_state):
         self.root = root
         self.grid = grid
+        self.flags = flags
         self.game_state = game_state
         self.start_time = None
         self.close_reason = CR_EXIT
@@ -30,8 +31,8 @@ def run_graphical_ui():
     while True:
         game_state = GameState(width, height, num_mines)
         grid = [[None] * width for _ in range(height)]
-
-        ui_state = UiState(root, grid, game_state)
+        flags = [[False] * width for _ in range(height)]
+        ui_state = UiState(root, grid, flags, game_state)
 
         menu = Menu(root)
         root.config(menu=menu)
@@ -50,6 +51,8 @@ def run_graphical_ui():
                         width=2,
                         height=2,
                         command=button_command(ui_state, x, y))
+                button.bind("<Button-3>", button_right_click(ui_state, x, y))
+                button.bind("<Button-2>", button_middle_click(ui_state, x, y))
                 button.grid(column=x, row=y)
                 grid[y][x] = button
 
@@ -68,6 +71,31 @@ def run_graphical_ui():
 # joita en halua yrittää tämän enempää selvitellä.
 def button_command(state, x, y):
     return lambda: open(state, x, y)
+
+def button_right_click(state, x, y):
+    return lambda event: flag(state, x, y)
+
+def button_middle_click(state, x, y):
+    return lambda event: open_surrounding(state, x, y)
+
+def flag(state, x, y):
+    if state.game_state.is_open(x, y):
+        return
+    state.flags[y][x] = not state.flags[y][x]
+    state.grid[y][x]["text"] = "p" if state.flags[y][x] else ""
+
+def open_surrounding(state, x, y):
+    if not state.game_state.is_open(x, y):
+        return
+
+    tiles = list(state.game_state.surrounding_tiles(x, y))
+    num_flags = sum(state.flags[v][u] for u, v in tiles)
+
+    if num_flags != state.game_state.num_surrounding_mines(x, y):
+        return
+
+    for u, v in tiles:
+        open(state, u, v)
 
 def custom_new_game(state):
     prompt = Toplevel(state.root)
@@ -116,6 +144,9 @@ def new_game(state, width, height, num_mines):
     state.root.destroy()
 
 def open(state, x, y):
+    if state.flags[y][x]:
+        return
+
     state.game_state.open(x, y)
 
     for v in range(state.game_state.height):
