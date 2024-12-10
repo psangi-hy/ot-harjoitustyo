@@ -9,6 +9,7 @@ Miinaharavapeli, jossa graafinen käyttöliittymä ja mahdollisuus tallentaa pel
 [arkkitehtuuri](/dokumentaatio/arkkitehtuuri.md)
 
 [release 1](https://github.com/psangi-hy/ot-harjoitustyo/releases/tag/viikko5)
+[release 2](https://github.com/psangi-hy/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Ohje
 
