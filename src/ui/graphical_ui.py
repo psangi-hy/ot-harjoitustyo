@@ -10,6 +10,10 @@ CR_EXIT = 0
 CR_NEWGAME = 1
 
 class UiState:
+    """
+    Sisältää tietoa graafisen käyttöliittymän tilasta.
+    """
+
     def __init__(self, root, grid, flags, game_state):
         self.root = root
         self.grid = grid
@@ -19,6 +23,12 @@ class UiState:
         self.close_reason = CR_EXIT
 
 def run_graphical_ui():
+    """
+    Tämä funktio käynnistää pelin graafisella käyttöliittymällä
+    ja muodostaa moduulin pääasiallisen rajapinnan.
+    Palauttaa NO_GRAPHICS_ENVIRONMENT, jos ikkunaa ei pysty avaamaan.
+    """
+
     try:
         root = Tk()
     except:
@@ -67,8 +77,11 @@ def run_graphical_ui():
             root = Tk()
             continue
 
-# Funktion määritteleminen suoraan silmukassa ei toimi Python-syistä,
-# joita en halua yrittää tämän enempää selvitellä.
+# Seuraavat kolme funktiota palauttavat takaisinkutsufunktion nappien
+# painamiselle eri hiirinäppäimillä. Funktion määritteleminen suoraan
+# silmukassa ei toimi Python-syistä, joita en halua yrittää tämän
+# enempää selvitellä.
+
 def button_command(state, x, y):
     return lambda: open(state, x, y)
 
@@ -79,12 +92,18 @@ def button_middle_click(state, x, y):
     return lambda event: open_surrounding(state, x, y)
 
 def flag(state, x, y):
+    """Merkitsee ruudun lipulla, joka estää sitä aukeamasta."""
     if state.game_state.is_open(x, y):
         return
     state.flags[y][x] = not state.flags[y][x]
     state.grid[y][x]["text"] = "p" if state.flags[y][x] else ""
 
 def open_surrounding(state, x, y):
+    """
+    Avaa avointa ruutua ympäröivät ruudut, jos
+    niissä on yhtä monta lippua kuin miinaa.
+    """
+
     if not state.game_state.is_open(x, y):
         return
 
@@ -98,6 +117,11 @@ def open_surrounding(state, x, y):
         open(state, u, v)
 
 def custom_new_game(state):
+    """
+    Avaa ikkunan, joka pyytää käyttäjältä peliasetukset,
+    ja aloittaa sen jälkeen uuden pelin näillä asetuksilla.
+    """
+
     prompt = Toplevel(state.root)
     prompt.transient(state.root)
 
@@ -125,7 +149,7 @@ def custom_new_game(state):
 
     prompt.mainloop()
 
-def ask_params_ok(state, prompt, width_var, height_var, num_mines_var):
+def custom_new_game_ok(state, prompt, width_var, height_var, num_mines_var):
     try:
         width = int(width_var.get())
         height = int(height_var.get())
@@ -144,6 +168,12 @@ def new_game(state, width, height, num_mines):
     state.root.destroy()
 
 def open(state, x, y):
+    """
+    Avaa ruudun ja päivittää käyttöliittymän tämän perusteella.
+    Jos peli on jälkeen voitettu, aloittaa siihen liittyvän
+    tietojenkeruun.
+    """
+
     if state.flags[y][x]:
         return
 
@@ -194,6 +224,12 @@ def open(state, x, y):
         state.start_time = time()
 
 def ask_name_and_save_score(root, score, width, height, num_mines):
+    """
+    Kysyy käyttäjän nimimerkkiä pelituloksen tallentamista varten.
+    Huomioi, että itse tuloksen tallennus ei tapahdu täällä vaan
+    game.scores-moduulissa.
+    """
+
     prompt = Toplevel(root)
     prompt.transient(root)
 

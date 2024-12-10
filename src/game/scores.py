@@ -4,6 +4,11 @@ from sqlite3 import connect
 DATABASE_NAME = "scores.db"
 
 def with_db(f):
+    """
+    Funktiokoriste, joka syöttää funktiolle
+    ensimmäisenä argumenttina tietokantaolion.
+    """
+
     def wrapper(*args):
         if isfile(DATABASE_NAME):
             db = connect(DATABASE_NAME)
@@ -17,6 +22,7 @@ def with_db(f):
     return wrapper
 
 def create_database():
+    """Alustaa sqlite-tietokannan."""
     db = connect(DATABASE_NAME)
     cur = db.cursor()
 
@@ -37,6 +43,11 @@ def create_database():
 
 @with_db
 def save_score(db, score, name, width, height, num_mines):
+    """
+    Tallentaa tietokantaan pelin tuloksen, käyttäjän
+    nimimerkin sekä asetukset, joilla peli pelattiin.
+    """
+
     cur = db.cursor()
 
     res = cur.execute("SELECT rowid FROM user WHERE name=? LIMIT 1;", (name,)).fetchone()

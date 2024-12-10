@@ -4,6 +4,11 @@ from game.game_state import GameState
 from game.scores import save_score
 
 def tile_str(state, x, y):
+    """
+    Palauttaa merkkijonon, jolla tietyn ruudun tila
+    esitetään käyttäjälle.
+    """
+
     if not state.is_open(x, y):
         return "."
 
@@ -17,6 +22,10 @@ def tile_str(state, x, y):
     return " "
 
 def read_input():
+    """
+    Palauttaa käyttäjän antaman syötteen pelin aikana.
+    """
+
     while True:
         i = input("Syötä koordinaatit: ")
         if i == "exit":
@@ -29,6 +38,11 @@ def read_input():
         return (int(s[0]), int(s[1]))
 
 def ask_difficulty():
+    """
+    Kysyy käyttäjältä vaikeustasoa ja palauttaa
+    tämän syöttämän kokonaisluvun väliltä 0..4.
+    """
+
     while True:
         i = input("Valitse vaikeustaso.\n1. Helppo\n2. Keskitaso\n3. Vaikea\n4. Mukautettu\n0. Poistu\n")
 
@@ -36,6 +50,10 @@ def ask_difficulty():
             return int(i)
 
 def ask_parameter(prompt):
+    """
+    Palauttaa käyttäjän syöttämän, pelikentän leveydeksi tai
+    korkeudeksi taikka miinojen lukumääräksi sopivan luvun.
+    """
     while True:
         i = input(prompt)
 
@@ -43,6 +61,11 @@ def ask_parameter(prompt):
             return int(i)
 
 def run_text_ui():
+    """
+    Käynnistää pelin komentorivikäyttöliittymällä ja toimii
+    tämän moduulin pääasiallisena rajapintana.
+    """
+
     option = ask_difficulty()
 
     if not option:
