@@ -35,4 +35,5 @@ ruutuja on merkitty lipulla.
 
 Kun olet avannut kaikki ruudut paitsi ne, joissa on miinoja, voitat pelin.
 Tällöin on sinulla mahdollisuus tallentaa pelituloksesi syöttämällä nimimerkkisi.
-Aiemmin tallennettujen tulosten tarkastelu on tulossa pian. :)
+Yläpalkin Tuloslista-painike avaa uudessa ikkunassa näkymän,
+jossa on kymmenen parasta nykyistä vaikeustasoa vastaavaa tulosta nimimerkkeineen.
