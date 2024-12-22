@@ -11,6 +11,7 @@ Miinaharavapeli, jossa graafinen käyttöliittymä ja mahdollisuus tallentaa pel
 
 [release 1](https://github.com/psangi-hy/ot-harjoitustyo/releases/tag/viikko5)
 [release 2](https://github.com/psangi-hy/ot-harjoitustyo/releases/tag/viikko6)
+[release 3](https://github.com/psangi-hy/ot-harjoitustyo/releases/tag/viikko7)
 
 ## Ohje
 
