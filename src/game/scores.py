@@ -3,6 +3,11 @@ from sqlite3 import connect
 
 DATABASE_NAME = "scores.db"
 
+class Score:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+
 def with_db(f):
     """
     Funktiokoriste, joka syöttää funktiolle
@@ -62,3 +67,21 @@ def save_score(db, score, name, width, height, num_mines):
         VALUES(?, julianday(), ?, ?, ?, ?);
     """, (score, user_id, width, height, num_mines))
     db.commit()
+
+@with_db
+def get_scores(db, width, height, num_mines):
+    """
+    Hakee tietokannasta 10 parasta aikaa.
+    """
+
+    cur = db.cursor()
+
+    res = cur.execute("""
+        SELECT name, value
+        FROM user LEFT JOIN score ON user.rowid=user_id
+        WHERE width=? AND height=? AND num_mines=?
+        ORDER BY value ASC
+        LIMIT 10;
+    """, (width, height, num_mines))
+
+    return list(Score(name, value) for name, value in res)

@@ -1,8 +1,9 @@
 from time import time
 from tkinter import Tk, Button, Label, Toplevel, Menu, Entry, IntVar, StringVar
+from tkinter.ttk import Treeview
 
 from game.game_state import GameState
-from game.scores import save_score
+from game.scores import save_score, get_scores
 
 NO_GRAPHICS_ENVIRONMENT = -999
 
@@ -53,6 +54,8 @@ def run_graphical_ui():
         new_game_menu.add_command(label="Keskitaso", command=lambda: new_game(ui_state, 16, 16, 40))
         new_game_menu.add_command(label="Vaikea", command=lambda: new_game(ui_state, 30, 16, 99))
         new_game_menu.add_command(label="Mukautettu", command=lambda: custom_new_game(ui_state))
+
+        menu.add_command(label="Tuloslista", command=lambda: scoreboard(ui_state))
 
         for y in range(height):
             for x in range(width):
@@ -166,6 +169,36 @@ def new_game(state, width, height, num_mines):
     state.close_reason = CR_NEWGAME
     state.new_game_params = (width, height, num_mines)
     state.root.destroy()
+
+def scoreboard(state):
+    """
+    Avaa tuloslistanäkymän.
+    """
+
+    window = Toplevel(state.root)
+
+    table = Treeview(window)
+    table["columns"] = ("name", "time")
+
+    table.column("#0", anchor="e", width=40)
+    table.column("name", anchor="w", width=100)
+    table.column("time", anchor="e", width=60)
+
+    table.heading("#0", anchor="e", text="sija")
+    table.heading("name", anchor="w", text="nimimerkki")
+    table.heading("time", anchor="e", text="aika")
+
+    scores = get_scores(
+            state.game_state.width,
+            state.game_state.height,
+            state.game_state.num_mines)
+
+    for i in range(len(scores)):
+        table.insert(
+                parent="", index="end", text=str(i + 1),
+                values=(scores[i].name, scores[i].value))
+
+    table.pack()
 
 def open(state, x, y):
     """
