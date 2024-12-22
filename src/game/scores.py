@@ -1,7 +1,7 @@
 from os.path import isfile
 from sqlite3 import connect
 
-DATABASE_NAME = "scores.db"
+database_name = "scores.db"
 
 class Score:
     def __init__(self, name, value):
@@ -15,8 +15,8 @@ def with_db(f):
     """
 
     def wrapper(*args):
-        if isfile(DATABASE_NAME):
-            db = connect(DATABASE_NAME)
+        if isfile(database_name):
+            db = connect(database_name)
         else:
             db = create_database()
 
@@ -26,9 +26,13 @@ def with_db(f):
 
     return wrapper
 
+def set_database_name(name):
+    global database_name
+    database_name = name
+
 def create_database():
     """Alustaa sqlite-tietokannan."""
-    db = connect(DATABASE_NAME)
+    db = connect(database_name)
     cur = db.cursor()
 
     cur.execute("CREATE TABLE user(name TEXT UNIQUE);")
