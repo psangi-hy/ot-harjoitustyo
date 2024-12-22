@@ -26,3 +26,9 @@ Viikko 6
 - Graafisessa käyttöliittymässä voi merkitä avaamattoman ruudun lipulla oikealla hiiripainikkeella.
 - Graafisessa käyttöliittymässä voi avata jo avattua ruutua ympäröivät ruudut hiiren
   keskipainikkeella, mikäli oikea määrä niitä on liputettu.
+
+Viikko 7
+========
+
+- Graafisessa käyttöliittymässä voi tarkastella aikaisempia tuloksia.
+- Testattu tulosten tallennusta ja hakua tietokannasta.
